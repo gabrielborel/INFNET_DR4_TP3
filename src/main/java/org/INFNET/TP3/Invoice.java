@@ -16,11 +16,9 @@ public class Invoice {
     }
 
     private double calculateSubtotal() {
-        double subtotal = 0;
-        for (Item item : order.getItems()) {
-            subtotal += item.getQuantity() * item.getPrice();
-        }
-        return subtotal;
+        return order.getItems().stream()
+                .mapToDouble(item -> item.quantity() * item.price())
+                .sum();
     }
 
     private void printCustomerInfo() {
@@ -35,7 +33,7 @@ public class Invoice {
 
     private void printItems() {
         for (Item item : order.getItems()) {
-            System.out.println(item.getQuantity() + "x " + item.getProductName() + " - R$" + item.getPrice());
+            System.out.println(item.quantity() + "x " + item.productName() + " - R$" + item.price());
         }
     }
 

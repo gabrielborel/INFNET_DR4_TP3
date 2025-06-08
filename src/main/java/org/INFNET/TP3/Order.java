@@ -26,14 +26,5 @@ public class Order {
     public List<Item> getItems() {
         return items;
     }
-
-    public void notifyCustomer() {
-        String message = "Pedido recebido! Obrigado pela compra.";
-        sendEmailToCustomer(message);
-    }
-
-    private void sendEmailToCustomer(String message) {
-        EmailService.sendEmail(customer.getEmail(), message);
-    }
 }
 
