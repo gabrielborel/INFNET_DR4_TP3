@@ -3,33 +3,28 @@ package org.INFNET.TP3;
 import java.util.ArrayList;
 import java.util.List;
 
-class Order {
-   private final Customer customer;
+public class Order {
+    private final Customer customer;
     private final List<Item> items = new ArrayList<>();
 
     public Order(Customer customer) {
         this.customer = customer;
     }
 
-    public void addItem(String productName, int quantity, double price) {
-        items.add(new Item(productName, quantity, price));
+    public void addItem(String name, int quantity, double price) {
+        items.add(new Item(name, quantity, price));
     }
 
-    public void printInvoice() {
-        double subtotal = 0;
-        System.out.println("Cliente: " + customer.getName());
-        for (Item item : items) {
-            System.out.println(item.getQuantity() + "x " + item.getProductName() + " - R$" + item.getPrice());
-            subtotal += item.getPrice() * item.getQuantity();
-        }
+    public String getCustomerName() {
+        return customer.getName();
+    }
 
-        double discountRate = 0.1;
-        double discount = DiscountPolicy.calculateDiscount(subtotal, discountRate);
-        double total = subtotal - discount;
+    public String getCustomerEmail() {
+        return customer.getEmail();
+    }
 
-        System.out.println("Subtotal: R$" + subtotal);
-        System.out.println("Desconto: R$" + discount);
-        System.out.println("Total final: R$" + total);
+    public List<Item> getItems() {
+        return items;
     }
 
     public void notifyCustomer() {
@@ -37,7 +32,8 @@ class Order {
         sendEmailToCustomer(message);
     }
 
-    public void sendEmailToCustomer(String message) {
+    private void sendEmailToCustomer(String message) {
         EmailService.sendEmail(customer.getEmail(), message);
     }
 }
+
