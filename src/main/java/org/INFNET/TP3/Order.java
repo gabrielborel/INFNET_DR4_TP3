@@ -32,7 +32,12 @@ class Order {
         System.out.println("Total final: R$" + total);
     }
 
-    public void sendEmail() {
-        EmailService.sendEmail(customer.getEmail(), "Pedido recebido! Obrigado pela compra.");
+    public void notifyCustomer() {
+        String message = "Pedido recebido! Obrigado pela compra.";
+        sendEmailToCustomer(message);
+    }
+
+    public void sendEmailToCustomer(String message) {
+        EmailService.sendEmail(customer.getEmail(), message);
     }
 }

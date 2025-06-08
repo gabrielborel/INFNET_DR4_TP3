@@ -7,6 +7,6 @@ public class Main {
         order.addItem("Mouse", 2, 80.0);
 
         order.printInvoice();
-        order.sendEmail();
+        order.notifyCustomer();
     }
 }
